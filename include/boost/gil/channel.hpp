@@ -30,6 +30,11 @@
 #include "gil_config.hpp"
 #include "utilities.hpp"
 
+#ifdef BOOST_MSVC
+#pragma warning(push)
+#pragma warning(disable: 4244) // narrowing conversion
+#endif
+
 namespace boost { namespace gil {
 
 
@@ -668,5 +673,9 @@ template <typename BaseChannelValue, typename MinVal, typename MaxVal>
 struct is_integral<gil::scoped_channel_value<BaseChannelValue,MinVal,MaxVal> > : public is_integral<BaseChannelValue> {};
 
 }
+
+#ifdef BOOST_MSVC
+#pragma warning(pop)
+#endif
 
 #endif
